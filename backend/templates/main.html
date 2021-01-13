@@ -1,23 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Webcam Live Streaming</title>
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
-</head>
-<body>
-    <div class="content">
-        <div class="head">
-            <h1>Webcam Live Streaming</h1>
-        </div>
+<html>
+    <head>
+        <title>HW4</title>
+        <style>
+            video {
+                width: 96%;
+                height: 64%;
+                min-width: 480px;
+                min-height: 320px;
+            }
+
+            body {
+                background-color: linen;
+                font-family: sans-serif;
+            }
+
+            h1 {
+                text-align: center;
+                font-family: Georgia;
+            }
+
+            .content {
+                float: left;
+                margin-top: 100px;
+                margin-left: 10%;
+                display: block;
+                width: 40%;
+                min-width: 500px;
+            }
+
+            .custom_button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+            }
+            .custom_button:hover {
+                background-color: #9CCFC0; /* Green */
+                color: white;
+            }
+
+            input {
+                border: 2px solid black;
+                outline: 0;
+                margin-bottom: 20px;
+                width: 200px;
+                height: 40px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Live Video Streaming</h1>
         <hr>
-
-        <div class="div-video">
-            <video id="player" controls>
-                <source src="{{ url_for('static', filename='video/hls.m3u8') }}" type="application/x-mpegURL">
-            </video>
+        <div class="content">
+            <video controls></video>
         </div>
-    </div>
-
-</body>
+        <div class="content">
+            <h2>Tracking ID</h2>
+            <input type="text", id="id_text">
+            <div></div>
+            <button class="custom_button">Confirm</button>
+        </div>
+    </body>
 </html>
+<script>
+$(document).ready(function(){
+    $(".custom_button").click(function(){
+        var id = $("#id_text").val();
+        var posting = $.post('http://140.113.86.64:10008/api/track/updateID', {'id': id})
+
+        posting.done(function(data) {
+            console.log(data)
+        });
+    });
+});
+</script>
