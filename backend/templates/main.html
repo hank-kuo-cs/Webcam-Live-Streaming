@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webcam Live Streaming</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+</head>
+<body>
+    <div class="content">
+        <div class="head">
+            <h1>Webcam Live Streaming</h1>
+        </div>
+        <hr>
+
+        <div class="div-video">
+            <video id="player" controls>
+                <source src="{{ url_for('static', filename='video/hls.m3u8') }}" type="application/x-mpegURL">
+            </video>
+        </div>
+    </div>
+
+</body>
+</html>

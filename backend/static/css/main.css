@@ -1,0 +1,26 @@
+body {
+    margin: auto;
+    background-color: linen;
+}
+
+.content {
+    margin: auto;
+    width: 80%;
+    font-family: Arial;
+}
+
+.head {
+    text-align: center;
+    font-family: Georgia;
+}
+
+.div-video {
+    margin auto;
+}
+
+#player {
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    height: 480px;
+}
