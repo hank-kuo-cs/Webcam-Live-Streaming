@@ -71,12 +71,18 @@
 <script>
 $(document).ready(function(){
     $(".custom_button").click(function(){
-        var id = $("#id_text").val();
-        var posting = $.post('http://140.113.86.64:10008/api/track/updateID', {'id': id})
-
-        posting.done(function(data) {
-            console.log(data)
-        });
+        var id_text = $("#id_text").val();
+	$(function() {
+	    $.ajax({
+	        url: 'http://140.113.86.64:10008/api/track/updateID',
+		type: 'POST',
+		cache: false,
+		dataType: 'json',
+		contentType: 'application/json',
+		data: JSON.stringify({id: id_text}),
+		success: function(data){console.log(data)}
+	    })
+	})
     });
 });
 </script>

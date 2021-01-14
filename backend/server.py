@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
+app.env = 'production'
 
 
 @app.route('/')
@@ -12,8 +14,9 @@ def website():
 @app.route('/api/track/updateID', methods=['POST'])
 def update_id():
     request_data = request.get_json()
+    print(request_data)
 
-    if 'id' not in request_data:
+    if not request_data or 'id' not in request_data:
         return jsonify({'message': 'data format error, must be {\'id\': \'a\'}'}), 400
 
     f = open('id.txt', 'w')
