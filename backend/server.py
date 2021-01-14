@@ -26,7 +26,7 @@ def update_id():
     if not request_data or 'id' not in request_data:
         return jsonify({'message': 'data format error, must be {\'id\': \'a\'}'}), 400
 
-    f = open('/opt/lampp/htdocs/NCTU/test/id.txt', 'w')
+    f = open('/eva_data/hank/VST/HW4/id.txt', 'w')
     f.write(request_data['id'])
     f.close()
 
