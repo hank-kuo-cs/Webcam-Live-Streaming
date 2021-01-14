@@ -8,6 +8,13 @@ app.config['JSON_AS_ASCII'] = False
 app.env = 'production'
 CORS(app)
 
+
+def write_id_txt(s: str):
+    f = open('/eva_data/hank/VST/HW4/id.txt', 'w')
+    f.write(s)
+    f.close()
+
+
 @app.route('/')
 def website():
     return render_template('main.html')
@@ -27,9 +34,16 @@ def update_id():
     if not request_data or 'id' not in request_data:
         return jsonify({'message': 'data format error, must be {\'id\': \'a\'}'}), 400
 
-    f = open('/eva_data/hank/VST/HW4/id.txt', 'w')
-    f.write(request_data['id'])
-    f.close()
+    write_id_txt(request_data['id'])
+
+    return jsonify({'message': 'success'}), 200
+
+
+@app.route('/api/track/cleanData', methods=['GET'])
+def clean_data():
+    os.system('rm -rf /eva_data/hank/VST/HW4/steam_raw/*')
+    os.system('rm -rf /eva_data/hank/VST/HW4/steam_det/*')
+    write_id_txt('all')
 
     return jsonify({'message': 'success'}), 200
 
