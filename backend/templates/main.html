@@ -66,7 +66,7 @@
             <video id="hls-video" class="video-js vjs-default-skin"
                    playsinline webkit-playsinline autoplay controls preload="auto"
                    x-webkit-airplay="true" x5-video-player-fullscreen="true" x5-video-player-typ="h5">
-                <source src="http://140.113.86.64:10009/stream_raw/hls_360p.m3u8" type="application/x-mpegURL">
+                <source src="http://140.113.86.64:10006/stream_det/hls_360p.m3u8" type="application/x-mpegURL">
             </video>
         </div>
         <div class="content">
@@ -83,7 +83,7 @@ $(document).ready(function(){
         var id_text = $("#id_text").val();
 	$(function() {
 	    $.ajax({
-	        url: 'http://140.113.86.64/api/track/updateID',
+	        url: 'http://140.113.86.64:10008/api/track/updateID',
 		type: 'POST',
 		cache: false,
 		dataType: 'json',

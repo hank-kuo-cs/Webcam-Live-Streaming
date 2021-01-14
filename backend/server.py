@@ -1,11 +1,12 @@
 import os
 from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.env = 'production'
-
+CORS(app)
 
 @app.route('/')
 def website():
