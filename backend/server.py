@@ -26,6 +26,12 @@ def favicon():
                                'pikachu.jpg', mimetype='image/vnd.microsoft.icon')
 
 
+@app.route('/api/track/runTracker', methods=['GET'])
+def run_tracker():
+    os.system('./run_tracker.sh')
+    return jsonify({'message': 'success'}), 200
+
+
 @app.route('/api/track/updateID', methods=['POST'])
 def update_id():
     request_data = request.get_json()
@@ -41,8 +47,8 @@ def update_id():
 
 @app.route('/api/track/cleanData', methods=['GET'])
 def clean_data():
-    os.system('rm -rf /eva_data/hank/VST/HW4/steam_raw/*')
-    os.system('rm -rf /eva_data/hank/VST/HW4/steam_det/*')
+    os.system('rm -rf /eva_data/hank/VST/HW4/stream_raw/*')
+    os.system('rm -rf /eva_data/hank/VST/HW4/stream_det/*')
     write_id_txt('all')
 
     return jsonify({'message': 'success'}), 200

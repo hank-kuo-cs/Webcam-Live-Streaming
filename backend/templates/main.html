@@ -81,6 +81,9 @@
 $(document).ready(function(){
     $(".custom_button").click(function(){
         var id_text = $("#id_text").val();
+        if (id_text.length == 0) {
+            id_text = 'all'
+        }
 	$(function() {
 	    $.ajax({
 	        url: 'http://140.113.86.64:10008/api/track/updateID',
